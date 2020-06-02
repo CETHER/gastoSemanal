@@ -19,6 +19,19 @@ class Presupuesto {
   }
 }
 
+//Clase interfaz
+class Interfaz {
+  //Métoddo para insertar presupuesto
+  insertarPresupuesto(cantidad){
+    const presupuestoSpan = document.querySelector('span#total');
+    const restanteSpan = document.querySelector('span#restante');
+    
+    //Insertar al HTML
+    presupuestoSpan.innerHTML = `${cantidad}`;
+    restanteSpan.innerHTML = `${cantidad}`;
+  }
+}
+
 
 //Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
@@ -27,7 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     //instancia el presupuesto
     cantidadPresupuesto = new Presupuesto(presupuestoUsuario);
-    console.log(cantidadPresupuesto);
     
+    //Instanciar la clase interfaz
+    const interfaz = new Interfaz();
+
+    interfaz.insertarPresupuesto(cantidadPresupuesto.presupuesto);
   }
 });
