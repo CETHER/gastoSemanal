@@ -15,7 +15,7 @@ class Presupuesto {
   }
 
   //Método para ir restando del presupuesto el gasto
-  presupuestoRestante(cantidad = 0){
+  restarGasto(cantidad = 0){
     return this.restante -= Number(cantidad);
   }
 }
@@ -65,6 +65,15 @@ class Interfaz {
     //insertar al HTML
     gastosListado.appendChild(li);
   }
+  //Comprueba el presupuesto restante
+  presupuestoRestante(gasto) {
+    console.log(cantidadPresupuesto);
+    const restante = document.querySelector('span#restante');
+    //actualizamos el presupuesto restante
+    const cantidadRestante = cantidadPresupuesto.restarGasto(gasto);
+    restante.innerHTML = cantidadRestante;
+    
+  }
 }
 
 
@@ -99,5 +108,6 @@ formulario.addEventListener('submit', function(e) {
   } else {
     interfaz.imprimirMensaje('Correcto', 'correcto');
     interfaz.agregarGastoListado(nombreGasto, cantidadGasto);
+    interfaz.presupuestoRestante(cantidadGasto);
   }
 })
