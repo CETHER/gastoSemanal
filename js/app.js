@@ -67,13 +67,30 @@ class Interfaz {
   }
   //Comprueba el presupuesto restante
   presupuestoRestante(gasto) {
-    console.log(cantidadPresupuesto);
+    
     const restante = document.querySelector('span#restante');
     //actualizamos el presupuesto restante
     const cantidadRestante = cantidadPresupuesto.restarGasto(gasto);
     restante.innerHTML = cantidadRestante;
     
+    //ejecutar función, dentro de la misma clase
+    this.comporbarPresupuesto();
   }
+
+  comporbarPresupuesto() {
+    const presupuestoTotal = cantidadPresupuesto.presupuesto;
+    const presupuestoRestante = cantidadPresupuesto.restante;
+    // Comprobar el 25%
+    const restante = document.querySelector('.restante');
+    if ((presupuestoTotal / 4) > presupuestoRestante) {
+      restante.classList.remove('alert-success', 'alert-warning');
+      restante.classList.add('alert-danger');
+    } else if ((presupuestoTotal/2) > presupuestoRestante){
+      restante.classList.remove('alert-success');
+      restante.classList.add('alert-warning');
+    }
+  }
+
 }
 
 
